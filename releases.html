@@ -18,13 +18,7 @@ layout: default
 						<!--
 						<span class="image featured"><img src="{{ site.baseurl }}/assets/images/banner.jpg" alt="" /></span>
                         -->
-						
-						<ul>
-							{% assign current = page.url | downcase | split: '/' %}
-							<li {% if current[1] == 'releases.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/releases.html">Use the binary of our tool: </a>this is the fastest way to get started with our tool</li>
-                            <li {% if current[1] == 'docker.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/docker.html">Use our docker to the development: </a>this is the recommend way to get involved with our tool</li>
-                        </ul>
-                        
+						                        
                           <table>
                               <thead>
                                 <tr>
@@ -37,12 +31,21 @@ layout: default
                               </thead>
                               <tbody>
                                 <tr>
+                                  <td style="text-align: center"><a href="#">1.0</a></td>
+                                  <td style="text-align: center">TBA</td>
+                                  <td style="text-align: center"><a href="#">git tag</a></td>
+                                  <td style="text-align: center"><a href="">TBA</a></td>
+                                  <td style="text-align: center"><a href="#">Docs</a></td>
+                                </tr>
+                                <!--
+                                <tr>
                                   <td style="text-align: center"><a href="https://github.com/klee/klee/releases/tag/v1.3.0">1.3.0</a></td>
                                   <td style="text-align: center">30 Dec 2016</td>
                                   <td style="text-align: center"><a href="https://github.com/klee/klee/tree/v1.3.0">git tag</a></td>
                                   <td style="text-align: center"><a href="https://hub.docker.com/r/klee/klee/tags/">klee/klee:1.3.0</a></td>
                                   <td style="text-align: center"><a href="/releases/docs/v1.3.0">Docs</a></td>
-                                </tr>    
+                                </tr> 
+                                -->
                               </tbody>
                         </table>
 
