@@ -1,0 +1,43 @@
+---
+title: Arcana
+layout: default
+---
+			
+<!-- Main -->
+	<section class="wrapper style1">
+		<div class="container">
+			<div id="content">
+
+				<!-- Content -->
+			
+					<article>
+						<header>
+							<h2>Publications and Talks Using Map2Check</h2>
+							<p>Publications</p>
+						</header>
+						<!--
+						<span class="image featured"><img src="{{ site.baseurl }}/assets/images/banner.jpg" alt="" /></span>
+                        -->
+                        
+                        <section class="4u">
+                            <div class="box highlight">
+                                <i class="icon major fa-pencil"></i>
+                                <h3>Also Important</h3>
+                                <p>
+                                Below you can find a list of papers and talkers that either use or extend Map2Check. They are listed in chronological order.</p>
+                                <p>
+                                If you have used or extended Map2Check and would like to have your paper listed here, please email map2check.tool@gmail.com).
+                                </p>
+                            </div>
+                        </section>
+                        
+						<ul>
+							{% assign current = page.url | downcase | split: '/' %}
+							<li {% if current[1] == 'releases.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/releases.html">Use the binary of our tool: </a>this is the fastest way to get started with our tool</li>
+                            <li {% if current[1] == 'docker.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/docker.html">Use our docker to the development: </a>this is the recommend way to get involved with our tool</li>
+                        </ul>
+					</article>
+		
+			</div>
+		</div>
+	</section>			
