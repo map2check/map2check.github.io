@@ -37,7 +37,7 @@
 						<ul>
 							{% assign current = page.url | downcase | split: '/' %}
 							<li {% if current[1] == 'index.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/index.html">Home</a></li>
-                            <li {% if current[1] == 'no-sidebar.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/no-sidebar.html">Getting Started</a></li>
+                            <li {% if current[1] == 'getting-started.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/no-sidebar.html">Getting Started</a></li>
                             <li {% if current[1] == 'no-sidebar.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/no-sidebar.html">Documentation</a></li>
                             <li {% if current[1] == 'no-sidebar.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/no-sidebar.html">Tutorials</a></li>
                             <li {% if current[1] == 'no-sidebar.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/no-sidebar.html">Publications</a></li>

@@ -1,0 +1,30 @@
+---
+title: Arcana
+layout: default
+---
+			
+<!-- Main -->
+	<section class="wrapper style1">
+		<div class="container">
+			<div id="content">
+
+				<!-- Content -->
+			
+					<article>
+						<header>
+							<h2>Getting Started</h2>
+							<p>Installing Map2Check.</p>
+						</header>
+						<!--
+						<span class="image featured"><img src="{{ site.baseurl }}/assets/images/banner.jpg" alt="" /></span>
+                        -->
+						
+						<ul>
+							{% assign current = page.url | downcase | split: '/' %}
+							<li {% if current[1] == 'releases.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/index.html">Use the binary of our tool:</a>this is the fastest way to get started with our tool</li>
+                        </ul>
+					</article>
+		
+			</div>
+		</div>
+	</section>			
