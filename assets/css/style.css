@@ -325,6 +325,7 @@
 
 		ol.default li {
 			padding-left: 0.25em;
+            counter-increment: item;
 		}
 
 	ul.default {
