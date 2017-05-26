@@ -11,8 +11,7 @@
 
 	body,
 	#skel-layers-wrapper {
-		/*background: #f7f7f7 url("images/bg01.png");*/
-        background:FFFFFF
+		background: #f7f7f7 url("images/bg01.png");
 	}
 
 	body.is-loading * {
