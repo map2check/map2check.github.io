@@ -21,6 +21,11 @@
 		ol.default li {
 			padding-left: 0.25em;
 		}
+        
+    li {
+        counter-increment: item;
+        margin-bottom: 5px;
+    }
 
 	ul.icons li a, ul.icons li span {
 		font-size: 1.5em;
