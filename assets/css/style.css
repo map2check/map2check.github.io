@@ -319,7 +319,8 @@
 /* Lists */
 
 	ol.default {
-		list-style: decimal;
+		list-style: none;
+        counter-reset: list;
 		padding-left: 1.25em;
 	}
 
