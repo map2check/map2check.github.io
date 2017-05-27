@@ -33,6 +33,7 @@
 		font-size: 16pt;
 		font-weight: 300;
 		line-height: 1.65em;
+        counter-reset: item; /**/
 	}
 
 	a {
@@ -319,23 +320,22 @@
 /* Lists */
 
 	ol.default {
-		list-style: decimal;
-        counter-reset: list;
+		list-style: none;        
 		padding-left: 1.25em;
 	}
 
 		ol.default li {
 			padding-left: 0.25em;
-            counter-increment: list;
+            counter-increment: item;
             margin-bottom: 5px;
 		}
         
         /*Added by Map2Check*/
-        ol.default li:before {
-           counter-increment: list;           
-           content: "0" counter(list);
+        ol.default li:before {                    
+           content: "0" counter(item);
            margin-right: 10px;
-           background: lightblue;                      
+           background: lightblue; 
+           border-radius: 100%;           
            color: white;
            display: inline-block;           
            text-align: center;
