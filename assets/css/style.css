@@ -326,14 +326,14 @@
 
 		ol.default li {
 			padding-left: 0.25em;
-            counter-increment: item;
+            counter-increment: list;
             margin-bottom: 5px;
 		}
         
         /*Added by Map2Check*/
         ol.default li:before {
            counter-increment: list;           
-           content: "0" counter(item);
+           content: "0" counter(list);
            margin-right: 10px;
            background: lightblue;                      
            color: white;
