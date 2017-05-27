@@ -320,22 +320,26 @@
 /* Lists */
 
 	ol.default {
-		counter-reset: section;                /* Creates a new instance of the
-                                            section counter with each ol
-                                            element */
-        list-style-type: none;
-        /*list-style: decimal; 
+		list-style: decimal; 
         counter-reset: item;        
-		padding-left: 1.25em;*/
+		padding-left: 1.25em;
 	}
-
+    
 		ol.default li {
 			padding-left: 0.25em;            
             margin-bottom: 5px;
 		}
         
+    ol.with_number {
+		counter-reset: section;                /* Creates a new instance of the
+                                            section counter with each ol
+                                            element */
+        list-style-type: none;        
+	}
+        
         /*Added by Map2Check*/
-        ol.default li:before {  
+        ol.with_number li:before {
+            background: #cce5ff;
             counter-increment: section;            /* Increments only this instance
                                             of the section counter */
             content: counters(section,".") " ";    /* Adds the value of all instances
