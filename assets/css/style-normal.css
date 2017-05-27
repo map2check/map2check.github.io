@@ -16,11 +16,12 @@
 	ol.default {
 		list-style: decimal;
 		padding-left: 1.25em;
+        margin-left: 200px;
 	}
 
 		ol.default li {
 			padding-left: 0.25em;
-            background: #ff9999;
+            margin-left: 200px;
 		}
     
 
