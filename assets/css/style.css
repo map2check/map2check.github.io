@@ -326,7 +326,19 @@
 		ol.default li {
 			padding-left: 0.25em;
             counter-increment: item;
+            margin-bottom: 5px;
 		}
+        
+        li:before {
+           margin-right: 10px;
+           content: counter(item);
+           background: lightblue;
+           border-radius: 100%;
+           color: white;
+           width: 1.2em;
+           text-align: center;
+           display: inline-block;
+        }
 
 	ul.default {
 		list-style: disc;
@@ -749,7 +761,6 @@
 /* Wrapper */
 
 	.wrapper {
-		padding: 5em 0 3em 0;
 	}
 
 		.wrapper.style1 {
