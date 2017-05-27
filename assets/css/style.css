@@ -32,7 +32,8 @@
 		font-family: 'Source Sans Pro', sans-serif;
 		font-size: 16pt;
 		font-weight: 300;
-		line-height: 1.65em;        
+		line-height: 1.65em; 
+        counter-reset: section;                    /* Set the section counter to 0 */        
 	}
 
 	a {
@@ -319,19 +320,31 @@
 /* Lists */
 
 	ol.default {
-		list-style: decimal; 
+		counter-reset: section;                /* Creates a new instance of the
+                                            section counter with each ol
+                                            element */
+        list-style-type: none;
+        /*list-style: decimal; 
         counter-reset: item;        
-		padding-left: 1.25em;
+		padding-left: 1.25em;*/
 	}
 
 		ol.default li {
-			padding-left: 0.25em;
-            counter-increment: item;
+			padding-left: 0.25em;            
             margin-bottom: 5px;
 		}
         
         /*Added by Map2Check*/
-        ol.default li:before {                    
+        ol.default li:before {  
+            counter-increment: section;            /* Increments only this instance
+                                            of the section counter */
+            content: counters(section,".") " ";    /* Adds the value of all instances
+                                            of the section counter separated
+                                            by a ".". */
+                                         /* if you need to support < IE8 then
+                                            make sure there is no space after 
+                                            the ',' */
+           /*
            content: counter(item);
            margin-right: 10px;
            background: lightblue; 
@@ -340,7 +353,7 @@
            display: inline-block;           
            text-align: center;
            position: absolute;
-           left: 0;
+           left: 0;*/
            
         }
 
