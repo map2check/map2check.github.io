@@ -13,10 +13,13 @@
 
 /* Lists */
 
+    #olmap {
+        color: red;
+    }
+
 	ol.default {
 		list-style: decimal;
-		padding-left: 1.25em;
-        color: red;
+		padding-left: 1.25em;        
 	}
 
 		ol.default li {
