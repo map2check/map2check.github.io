@@ -322,7 +322,8 @@
 	ol.default {
 		list-style: decimal; 
         counter-reset: item;        
-		padding-left: 1.25em;        
+		padding-left: 1.25em; 
+        background: #ff9999;        
 	}
     
 		ol.default li {
