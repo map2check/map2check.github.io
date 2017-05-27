@@ -319,16 +319,13 @@
 /* Lists */
 
 	ol.default {
-		list-style: decimal; 
-        counter-reset: item;        
-		padding-left: 1.25em; 
-        background: #ff9999;        
+		list-style: decimal;                 
+		padding-left: 1.25em;                 
 	}
     
 		ol.default li {
 			padding-left: 0.25em;            
-            margin-bottom: 5px;
-            background: #cce5ff;
+            margin-bottom: 5px;            
 		}
         
 	ul.default {
