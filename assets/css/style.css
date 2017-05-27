@@ -329,7 +329,7 @@
             margin-bottom: 5px;
 		}
         
-        li:before {
+        ol.default li:before {
            margin-right: 10px;
            content: counter(item);
            background: lightblue;
