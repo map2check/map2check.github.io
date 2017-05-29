@@ -328,16 +328,6 @@
             margin-bottom: 5px;            
 		}
         
-    .code ol{
-        list-style: none;
-        margin-bottom: 10px;
-        padding-left: none;
-        line-height: none;
-        display: block;
-        font-size: 1.5em;
-        border: 0;
-    }
-        
 	ul.default {
 		list-style: disc;
 		padding-left: 1em;
