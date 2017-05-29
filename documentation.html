@@ -46,7 +46,7 @@ layout: default
                             <p style="text-align:justify">
                             In this first example, we show how to apply Map2Check tool to identify a simple invalid free in the following C source code, called invalid_free.c
                             </p>
-                            <figure>
+                            <div id="code">
                                 <pre class="prettyprint linenums">
                                 #include &lt;stdio.h&gt;
                                 #include &lt;stdlib.h&gt;
@@ -63,7 +63,7 @@ layout: default
                                     free(a);
                                 }
                                 </pre>
-                            </figure>
+                            </div>
                             <p style="text-align:justify">
                             Map2Check should be called in the installation directory as follows: 
                             <font face="courier new">./map2check invalid_free.c</font>. 
