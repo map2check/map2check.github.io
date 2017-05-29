@@ -41,6 +41,34 @@ layout: default
                             To get a complete list of Map2Check’s command-line options run: 
                             <font face="courier new">map2check --help</font>. The remainder of this page illustrate Map2Check’s main command-line options.
                             </p>
+                            
+                        <h2 id="map_sample">Map2Check First Example</h2>
+                            <p style="text-align:justify">
+                            In this first example, we show how to apply Map2Check tool to identify a simple invalid free in the following C source code, called invalid_free.c
+                            </p>
+                            <figure>
+                                <pre class="prettyprint linenums">
+                                #include <stdio.h>
+                                #include <stdlib.h>
+
+                                int main()
+                                {
+                                    int *a = malloc(12);
+                                    int *b = malloc(12);
+                                    int  c =  12;
+                                    a = &c;
+                                    b = a;
+                                    
+                                    free(b);
+                                    free(a);
+                                }
+                                </pre>
+
+                            </figure>
+                            <p style="text-align:justify">
+                            Map2Check should be called in the installation directory as follows: 
+                            <font face="courier new">./map2check invalid_free.c</font>. 
+                            </p>
                     </div>
 		
 			</div>
