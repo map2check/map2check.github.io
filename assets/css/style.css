@@ -325,7 +325,8 @@
     
 		ol.default li {
 			padding-left: 0.25em;            
-            margin-bottom: 5px;            
+            margin-bottom: 5px; 
+            font-size: 5em;            
 		}
     
     .code ol{
