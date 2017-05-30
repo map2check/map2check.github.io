@@ -320,13 +320,12 @@
 
 	ol.default {
 		list-style: decimal;                 
-		padding-left: 5em;                 
+		padding-left: 1.25em;                 
 	}
     
 		ol.default li {
 			padding-left: 0.25em;            
-            margin-bottom: 5px; 
-            font-size: 5em;            
+            margin-bottom: 5px;                        
 		}
     
     .code ol{
@@ -335,7 +334,7 @@
         padding-left: none;
         line-height: none;
         display: block;
-        font-size: 1.5em;
+        font-size: 5em;
         border: 0;
     }
     
