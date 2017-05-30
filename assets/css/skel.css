@@ -4,15 +4,6 @@
     
 /*ol,ul{list-style:none;}*/
 
-.code ol{
-        list-style: none;
-        margin-bottom: 10px;
-        padding-left: none;
-        line-height: none;
-        display: block;
-        font-size: 1.5em;
-        border: 0;
-    }
 
 /* Box Model */
 
