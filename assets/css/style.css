@@ -330,11 +330,12 @@
     
     .code ol{
         list-style: none;
+        margin-top: 10px;
         margin-bottom: 10px;
         padding-left: none;
         line-height: none;
         display: block;
-        font-size: 5em;
+        font-size: 1.2em;
         border: 0;
     }
     

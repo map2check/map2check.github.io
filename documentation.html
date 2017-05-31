@@ -32,11 +32,11 @@ layout: default
                             <p style="text-align:justify">
                             Map2Check is invoked through a command-line interface as follows: 
                             </p>
-                            <figure>
-                                <pre class="prettyprint">
-                                $./map2check [options] program.[i|c]
-                                </pre>
-                            </figure>
+<figure>
+<pre class="prettyprint lang-sh code">
+$./map2check [options] program.[i|c]
+</pre>
+</figure>
                             <p style="text-align:justify">
                             To get a complete list of Map2Check’s command-line options run: 
                             <font face="courier new">map2check --help</font>. The remainder of this page illustrate Map2Check’s main command-line options.
@@ -46,24 +46,24 @@ layout: default
                             <p style="text-align:justify">
                             In this first example, we show how to apply Map2Check tool to identify a simple invalid free in the following C source code, called invalid_free.c
                             </p>
-                            <div id="code">
-                                <pre class="prettyprint linenums">
-                                #include &lt;stdio.h&gt;
-                                #include &lt;stdlib.h&gt;
+<figure id="code">
+<pre class="prettyprint lang-c linenums code">
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
 
-                                int main()
-                                {
-                                    int *a = malloc(12);
-                                    int *b = malloc(12);
-                                    int  c =  12;
-                                    a = &c;
-                                    b = a;
-                                    
-                                    free(b);
-                                    free(a);
-                                }
-                                </pre>
-                            </div>
+int main()
+{
+    int *a = malloc(12);
+    int *b = malloc(12);
+    int  c =  12;
+    a = &c;
+    b = a;
+    
+    free(b);
+    free(a);//invalid free
+}
+</pre>
+</figure>
                             <p style="text-align:justify">
                             Map2Check should be called in the installation directory as follows: 
                             <font face="courier new">./map2check invalid_free.c</font>. 
