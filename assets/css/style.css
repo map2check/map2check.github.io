@@ -332,11 +332,11 @@
         list-style: none;
         font-family: courier;
         margin-top: 10px;
-        margin-bottom: 30px;
+        margin-bottom: 50px;
         padding-left: 3em;
         line-height: none;
         display: block;
-        font-size: 1.2em;
+        font-size: 1em;
         border: 0;
     }
     
