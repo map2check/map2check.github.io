@@ -1,0 +1,93 @@
+---
+title: Arcana
+layout: default
+---
+{% assign current = page.url | downcase | split: '/' %}
+<!-- Main -->
+<section class="wrapper style1">
+	<div class="container">
+		<div id="content">
+
+				<!-- Content -->
+			
+					<article>
+						<header>
+							<h2>Building Map2Check in our development environment</h2>
+							<p>Using Docker</p>
+						</header>
+                       
+                       <div style="width: 100%;">
+                            <div style="height: 150px; width: 150px; float: left;"> 
+                                <span class="image featured">
+                                    <img src="{{ site.baseurl }}/assets/images/docker.png" alt="docker icon" />
+                                </span>
+                            </div>
+                            <div style="margin-left: 120px;"> 
+                               <p style="text-align:justify">
+                                Our Map2Check Docker is available by:
+                               </p>
+                               <ul>
+                                <li>
+                                    <a href="#docker_hub">Docker Hub</a>
+                                </li>
+                                <li>
+                                    <a href="#docker_git">Dockerfile from Map2Check repository</a>
+                                </li>                                
+                               </ul>
+                               
+                               <!-- Each content -->
+                                <h2 id="docker_hub">Docker Hub</h2>
+                                <p style="text-align:justify">
+                                Map2Check docker image is available at <a href="https://hub.docker.com">https://hub.docker.com</a>, you can use our docker image, as following: 
+                                </p>
+<figure id="code">
+<pre class="prettyprint lang-sh code">
+$ docker pull hrocha/mapdevel
+$ mkdir $(pwd)/mapdevel
+$ docker run -it --name=mapdevel -v $(pwd):/home/map2check/devel_tool/host:Z hrocha/mapdevel /bin/bash
+</pre>
+</figure>
+</br>
+
+                                <h2 id="docker_git">Dockerfile from Map2Check repository</h2>
+                                <p style="text-align:justify">
+                                Map2Check dockerfile to build the Map2Check tool image with our development environment is available at <a href="https://github.com/hbgit/Map2Check.git">https://github.com/hbgit/Map2Check.git</a>, you can build our docker image, as following: 
+                                </p>
+                                
+<figure id="code">
+<pre class="prettyprint lang-sh code">
+$ gitclone https://github.com/hbgit/Map2Check.git
+$ git checkout map2checkllvm
+$ docker build -t hrocha/mapdevel .
+$ docker run -it --name=mapdevel -v $(pwd):/home/map2check/devel_tool/mygitclone:Z hrocha/mapdevel /bin/bash
+</pre>
+</figure>
+</br>
+
+
+                                <h2>Docker Extra Information</h2>
+                                <p style="text-align:justify">
+                                Our docker user is <font face="courier new">"map2check"</font> and the password is <font face="courier new">"map2check"</font>. Docker tips:
+                                </p>
+                                <ul>
+                                    <li>
+                                    You can check that the container still exists by running: <font face="courier new">$ docker ps -a</font>
+                                    </li>
+                                    <li>
+                                    You can restart the container by running: <font face="courier new">docker start -ai mapdevel</font>
+                                    </li>
+                                    <li>
+                                    You can run any command in running container just knowing its ID (or name): <font face="courier new">docker exec <container_id_or_name> echo "Hello from container!"</font>
+                                    </li>
+                                </ul>
+                                
+                            </br>
+                               
+                            </div>
+                       </div>
+                    
+                    </br>
+		
+			</div>
+		</div>
+	</section>			
