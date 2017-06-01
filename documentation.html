@@ -32,14 +32,15 @@ layout: default
                             <p style="text-align:justify">
                             Map2Check is invoked through a command-line interface as follows: 
                             </p>
-<figure>
+<figure id="code">
 <pre class="prettyprint lang-sh code">
 $./map2check [options] program.[i|c]
 </pre>
 </figure>
+                            </br>
                             <p style="text-align:justify">
                             To get a complete list of Map2Check’s command-line options run: 
-                            <font face="courier new">map2check --help</font>. The remainder of this page illustrate Map2Check’s main command-line options.
+                            <font face="courier new"><a href="#map_options">map2check --help</a></font>. The remainder of this page illustrate Map2Check’s main command-line options.
                             </p>
                             
                         <h2 id="map_sample">Map2Check First Example</h2>
@@ -64,10 +65,32 @@ int main()
 }
 </pre>
 </figure>
+                            </br>
                             <p style="text-align:justify">
                             Map2Check should be called in the installation directory as follows: 
-                            <font face="courier new">./map2check invalid_free.c</font>. 
+                            <font face="courier new">./map2check invalid_free.c</font>, this way the 
+                            following result will be present. 
                             </p>
+                            
+                            <h2 id="map_options">Map2Check Options</h2>
+                            <p style="text-align:justify">
+                            Map2Check is invoked as follows: <font face="courier new"><a href="#map_options">map2check --help</a></font>.
+                            </p>
+                            
+<figure id="code">
+<pre class="prettyprint lang-sh code">
+Options:
+  -h [ --help ]                show help
+  -i [ --input-file ] arg      specifies the files
+  -f [ --target-function ] arg checks if function can be executed
+  -e [ --expected-result ] arg specifies what output should be, used for tests
+  -p [ --print-list-log ]      prints list log during counter example
+  -w [ --generate-witness ]    generate witness file
+  -d [ --debug-info ]          prints debug info
+  -m [ --assume-malloc-true ]  assumes that all mallocs will not fail
+  -v [ --version ]             prints map2check version
+</pre>
+</figure>
                     </div>
 		
 			</div>
