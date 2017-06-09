@@ -30,6 +30,18 @@
                                 -->
 							</div>
 						</div>
+                        <section class="6u">
+                            <h3>Go Links</h3>
+                                <ul style="list-style-type: none;" class="links">
+                                    <{% assign current = page.url | downcase | split: '/' %}
+                                    <li {% if current[1] == 'index.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/index.html">Home</a></li>
+                                    <li {% if current[1] == 'getting-started.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/getting-started.html">Getting Started</a></li>
+                                    <li {% if current[1] == 'no-sidebar.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/documentation.html">Documentation</a></li>
+                                    <li {% if current[1] == 'no-sidebar.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/no-sidebar.html">Tutorials</a></li>
+                                    <li {% if current[1] == 'publications.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/publications.html">Publications</a></li>
+                                    <li {% if current[1] == 'releases.html' %}class="current"{% endif %}><a href="{{ site.baseurl }}/releases.html">Releases</a></li                                   
+                                </ul>
+                        </section>
                         <!--
 						<section class="6u">
 							<h3>Get In Touch</h3>
