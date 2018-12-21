@@ -37,7 +37,7 @@ layout: default
                             </p>
 <figure id="code">
 <pre class="prettyprint lang-sh code">
-$./map2check [options] program.[i|c]
+$./map2check [options] program.[i|c|bc]
 </pre>
 </figure>
                             </br>
@@ -78,48 +78,107 @@ int main()
 <figure id="code">
 <pre class="prettyprint lang-sh code">
 Started Map2Check
-Compiling invalid_free.c
-Successfully read bitcode/IR
-Function: main
+Compiling /home/map2check/devel_tool/mygitclone/invalid_free.c
+Adding nondet pass
+Adding memtrack pass
+Adding map2check pass
+Linking with map2check library
+Instrumenting with LLVM LibFuzzer
+Executing LibFuzzer with map2check
+Running 2 workers
+./5ee846f7dde256e515c97404b52edaee8239b686.map2check-fuzzed.out -use_value_profile=1 >fuzz-0.log 2>&1
+./5ee846f7dde256e515c97404b52edaee8239b686.map2check-fuzzed.out -use_value_profile=1 >fuzz-1.log 2>&1
+================== Job 0 exited with exit code 19712 ============
+INFO: Seed: 1536959748
+INFO: Loaded 1 modules   (292 inline 8-bit counters): 292 [0x66f1a8, 0x66f2cc), 
+INFO: Loaded 1 PC tables (292 PCs): 292 [0x45e1d0,0x45f410), 
+INFO: -max_len is not provided; libFuzzer will not generate inputs larger than 4096 bytes
 ...
-Started klee execution
-Using STP solver backend
-KLEE: done: total instructions = 4169
-KLEE: done: completed paths = 1
-KLEE: done: generated tests = 1
 Started counter example generation
 Counter-example:
 
-State 0 file invalid_free.c Line content     int *a = malloc(12);
+State 0: file /home/map2check/devel_tool/mygitclone/invalid_free.c
+------------------------------------------------------------
+>>Memory list log
 
-LIST LOG ROW
-        ID: 0
-        Address: 0x7f7d86302a40
-        PointsTo: 0x7f7d862d2420
-        Is Free: 0
-        Is Dynamic: 1
-        Var Name: a
-        Line Number: 6
-        Function Name: main
-        Step : 0
-...
-State 5 file invalid_free.c Line content     free(b);//invalid free
+  Line content   :     int *a = malloc(12);
+  Address        : 0x7f826bbf3e98
+  PointsTo       : 0x7f82640009b0
+  Is Free        : FALSE
+  Is Dynamic     : TRUE
+  Var Name       : 
+  Line Number    : 6
+  Function Scope : main
 
-LIST LOG ROW
-        ID: 0
-        Address: 0x7f7d86302710
-        PointsTo: 0x7f7d862d2420
-        Is Free: 1
-        Is Dynamic: 0
-        Var Name: b
-        Line Number: 13
-        Function Name: main
-        Step : 5
+State 1: file /home/map2check/devel_tool/mygitclone/invalid_free.c
+------------------------------------------------------------
+>>Memory list log
+
+  Line content   :     int *b = malloc(12);
+  Address        : 0x7f826bbf3e90
+  PointsTo       : 0x7f8264000c40
+  Is Free        : FALSE
+  Is Dynamic     : TRUE
+  Var Name       : 
+  Line Number    : 7
+  Function Scope : main
+
+State 2: file /home/map2check/devel_tool/mygitclone/invalid_free.c
+------------------------------------------------------------
+>>Memory list log
+
+  Line content   :     b = a;
+  Address        : 0x7f826bbf3e90
+  PointsTo       : 0x7f82640009b0
+  Is Free        : FALSE
+  Is Dynamic     : TRUE
+  Var Name       : 
+  Line Number    : 10
+  Function Scope : main
+
+State 3: file /home/map2check/devel_tool/mygitclone/invalid_free.c
+------------------------------------------------------------
+>>Memory list log
+
+  Line content   :     free(a);
+  Address        : 0x7f826bbf3e98
+  PointsTo       : 0x7f82640009b0
+  Is Free        : TRUE
+  Is Dynamic     : FALSE
+  Var Name       : 
+  Line Number    : 12
+  Function Scope : main
+
+State 4: file /home/map2check/devel_tool/mygitclone/invalid_free.c
+------------------------------------------------------------
+>>Memory list log
+
+  Line content   :     free(a);
+  Address        : 0x7f826bbf3e90
+  PointsTo       : 0x7f82640009b0
+  Is Free        : TRUE
+  Is Dynamic     : FALSE
+  Var Name       : 
+  Line Number    : 12
+  Function Scope : main
+
+State 5: file /home/map2check/devel_tool/mygitclone/invalid_free.c
+------------------------------------------------------------
+>>Memory list log
+
+  Line content   :     free(b);//invalid free
+  Address        : 0x7f826bbf3e90
+  PointsTo       : 0x7f82640009b0
+  Is Free        : TRUE
+  Is Dynamic     : FALSE
+  Var Name       : 
+  Line Number    : 13
+  Function Scope : main
 
 ----------------------------------------------------
 Violated property:
-        file map2check_property line 13 function main
-        FALSE-FREE: Operand of free must have zero pointer offset
+	file map2check_property line 13 function main
+	FALSE-FREE: Operand of free must have zero pointer offset
 
 VERIFICATION FAILED
 </pre>
@@ -133,16 +192,30 @@ VERIFICATION FAILED
                             
 <figure id="code">
 <pre class="prettyprint lang-sh code">
+&gt; &gt; &gt; 	  v7.2-Flock : Tue Nov 27 22:00:00 -04 2018 	 &lt; &lt; &lt;
+
+Usage: map2check [options] file.[i|c|bc]
+
 Options:
   -h [ --help ]                show help
-  -i [ --input-file ] arg      specifies the files
-  -f [ --target-function ] arg checks if function can be executed
-  -e [ --expected-result ] arg specifies what output should be, used for tests
-  -p [ --print-list-log ]      prints list log during counter example
-  -w [ --generate-witness ]    generate witness file
-  -d [ --debug-info ]          prints debug info
-  -m [ --assume-malloc-true ]  assumes that all mallocs will not fail
   -v [ --version ]             prints map2check version
+  -d [ --debug ]                Debug mode
+  -i [ --input-file ] arg      specifies the files
+  -t [ --timeout ] arg         Timeout for map2check execution
+  -f [ --target-function ]     Searches for __VERIFIER_error is reachable
+  -g [ --generate-testcase ]   Creates c program with fail testcase 
+                               (experimental)
+  -m [ --memtrack ]            Check for memory errors
+  -p [ --print-counter ]       Print Counterexample
+  --memcleanup-property         Analyze program for memcleanup errors
+  -o [ --check-overflow ]      Analyze program for overflow failures
+  -c [ --check-asserts ]       Analyze program and verify assert failures
+  -a [ --add-invariants ]      Adding program invariants adopting Crab-LLVM
+  -w [ --generate-witness ]    Generates witness file
+  -e [ --expected-result ] arg Specifies type of violation expected
+  -b [ --btree ]                Uses btree structure to hold information 
+                               (experimental, use this if you are having memory
+                               problems)
 </pre>
 </figure>
 </br>
