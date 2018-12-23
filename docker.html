@@ -62,7 +62,7 @@ $ docker run -it --name=mapdevel -v $(pwd):/home/map2check/devel_tool/host:Z hro
                                 
 <figure id="code">
 <pre class="prettyprint lang-sh code">
-$ gitclone https://github.com/hbgit/Map2Check.git
+$ git clone https://github.com/hbgit/Map2Check.git
 $ docker build -t hrocha/mapdevel .
 $ docker run -it --name=mapdevel -v $(pwd):/home/map2check/devel_tool/mygitclone:Z hrocha/mapdevel /bin/bash
 </pre>
@@ -87,6 +87,50 @@ $ docker run -it --name=mapdevel -v $(pwd):/home/map2check/devel_tool/mygitclone
                                 </ul>
                                 
                             </br>
+                            
+                            <h2>Inside Docker</h2>
+                                <p style="text-align:justify">
+                                Our docker container (i.e., mapdevel) has been adopted to build <font face="courier new">map2check</font> 
+                                by running the wrapper script <font face="courier new">make-release.sh</font>, as following:                                
+                                </p>
+                                <figure id="code">
+<pre class="prettyprint lang-sh code">
+$ cd mygitclone/
+$ ./make-release.sh
+Building Map2Check release ... 
+
+-- Searching clang in /llvm/release/llvm600/bin
+-- Found /llvm/release/llvm600/bin/clang
+-- Searching clang++ in /llvm/release/llvm600/bin
+-- Found /llvm/release/llvm600/bin/clang++
+-- Searching llvm-config in /llvm/release/llvm600/bin
+-- Found /llvm/release/llvm600/bin/llvm-config
+clang version 6.0.0 (tags/RELEASE_600/final)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /llvm/release/llvm600/bin
+
+-- Boost version: 1.58.0
+-- Found the following Boost libraries:
+--   program_options
+--   system
+--   filesystem
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/map2check/devel_tool/mygitclone/build
+...
+Copying external tools
+> Map2Check license
+> Extra tools licenses
+> Wrapper script
+> Module tool-info benchexec
+> README file
+
+Cleaning for SVCOMP
+
+DONE
+</pre>
+								</figure>
                                
                             </div>
                        </div>
