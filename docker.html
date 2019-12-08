@@ -63,8 +63,71 @@ $ docker run -it --name=mapdevel -v $(pwd):/home/map2check/devel_tool/host:Z hro
 <figure id="code">
 <pre class="prettyprint lang-sh code">
 $ git clone https://github.com/hbgit/Map2Check.git
-$ docker build -t hrocha/mapdevel .
-$ docker run -it --name=mapdevel -v $(pwd):/home/map2check/devel_tool/mygitclone:Z hrocha/mapdevel /bin/bash
+$ cd Map2Check
+$ git submodule update --init --recursive
+$ docker build -t hrocha/mapdevel --no-cache -f Dockerfile .
+$ docker run --rm -v $(pwd):/home/map2check/devel_tool/mygitclone:Z --user $(id -u):$(id -g) \
+  hrocha/mapdevel /bin/bash -c "cd /home/map2check/devel_tool/mygitclone; ./make-release.sh; \
+  ./make-unit-test.sh"
+
+  Building Map2Check release ... 
+
+  -- Searching clang in /llvm/release/llvm600/bin
+  -- Found /llvm/release/llvm600/bin/clang
+  -- Searching clang++ in /llvm/release/llvm600/bin
+  -- Found /llvm/release/llvm600/bin/clang++
+  -- Searching llvm-config in /llvm/release/llvm600/bin
+  -- Found /llvm/release/llvm600/bin/llvm-config
+  clang version 6.0.0 (tags/RELEASE_600/final)
+  Target: x86_64-unknown-linux-gnu
+  Thread model: posix
+  InstalledDir: /llvm/release/llvm600/bin
+  
+  -- Boost version: 1.58.0
+  ... 
+  -- Installing: /home/map2check/devel_tool/mygitclone/release/lib/TrackBBLog.bc
+  -- Installing: /home/map2check/devel_tool/mygitclone/release/lib/WitnessGeneration.bc
+  -- Installing: /home/map2check/devel_tool/mygitclone/release/lib/WitnessGenerationNone.bc
+  -- Installing: /home/map2check/devel_tool/mygitclone/release/./map2check
+
+  Copying external tools
+  > Copying metaSMT deps ...
+  > Crab-LLVM replacing PATH
+  > Map2Check license
+  > Extra tools licenses
+  > Wrapper script
+  > Module tool-info benchexec
+  > README file
+
+ Cleaning for SVCOMP
+
+ DONE
+
+ ... 
+
+ Building Map2Check test ...
+ ... 
+ Test project /home/map2check/devel_tool/mygitclone/build
+    Start 1: HelloGTest
+  1/7 Test #1: HelloGTest .......................   Passed    0.00 sec
+    Start 2: AllocationLogTest
+  2/7 Test #2: AllocationLogTest ................   Passed    0.00 sec
+    Start 3: HeapLogTest
+  3/7 Test #3: HeapLogTest ......................   Passed    0.00 sec
+    Start 4: ContainerReallocTest
+  4/7 Test #4: ContainerReallocTest .............   Passed    0.01 sec
+    Start 5: BTreeTest
+  5/7 Test #5: BTreeTest ........................   Passed    0.14 sec
+    Start 6: ContainerBTreeTest
+  6/7 Test #6: ContainerBTreeTest ...............   Passed    0.16 sec
+    Start 7: MemTrackTest
+  7/7 Test #7: MemTrackTest .....................   Passed    0.00 sec
+
+  100% tests passed, 0 tests failed out of 7
+
+  Total Test time (real) =   0.32 sec
+
+  
 </pre>
 </figure>
 </br>
@@ -88,49 +151,50 @@ $ docker run -it --name=mapdevel -v $(pwd):/home/map2check/devel_tool/mygitclone
                                 
                             </br>
                             
-                            <h2>Inside Docker</h2>
+                            <h2>Running Regression Testing with Docker</h2>
                                 <p style="text-align:justify">
-                                Our docker container (i.e., mapdevel) has been adopted to build <font face="courier new">map2check</font> 
-                                by running the wrapper script <font face="courier new">make-release.sh</font>, as following:                                
+                                In our regression testing, we have been adopted <a href="https://github.com/sosy-lab/benchexec">benchexec tools </a> 
+                                to execute our test cases from <a href="https://raw.githubusercontent.com/hbgit/Map2Check/master/tests/regression_test/xml_doc_benchexec/map2check_regression_test_travis.xml">XML definition file 
+                                    </a>. <font face="courier new">Map2Check</font> provides a wrapper script <font face="courier new">make-regression-test.sh</font> 
+                                    with the options:                                
                                 </p>
                                 <figure id="code">
 <pre class="prettyprint lang-sh code">
-$ cd mygitclone/
-$ ./make-release.sh
-Building Map2Check release ... 
-
--- Searching clang in /llvm/release/llvm600/bin
--- Found /llvm/release/llvm600/bin/clang
--- Searching clang++ in /llvm/release/llvm600/bin
--- Found /llvm/release/llvm600/bin/clang++
--- Searching llvm-config in /llvm/release/llvm600/bin
--- Found /llvm/release/llvm600/bin/llvm-config
-clang version 6.0.0 (tags/RELEASE_600/final)
-Target: x86_64-unknown-linux-gnu
-Thread model: posix
-InstalledDir: /llvm/release/llvm600/bin
-
--- Boost version: 1.58.0
--- Found the following Boost libraries:
---   program_options
---   system
---   filesystem
--- Configuring done
--- Generating done
--- Build files have been written to: /home/map2check/devel_tool/mygitclone/build
-...
-Copying external tools
-> Map2Check license
-> Extra tools licenses
-> Wrapper script
-> Module tool-info benchexec
-> README file
-
-Cleaning for SVCOMP
-
-DONE
+t for travis    - small set of regression testing
+m for map2check - set of regression testing
+s for svcomp    - set of svcomp regression testing
 </pre>
-								</figure>
+                                </figure>
+                                
+                                <p style="text-align:justify">
+                                    Running our regression testing for Travis service:
+                                </p>
+                                <figure id="code">
+<pre class="prettyprint lang-sh code">
+$ ./make-regression-test.sh t
+Adopting: map2check_regression_test_travis.xml
+Found benchexec image to run tests ...
+executing run set 'sv-comp19_map2check'     (35 files)
+01:55:05   array-memsafety/add_last_unsafe.yml                 false(valid-deref)        0.90    0.77
+01:55:06   array-memsafety/array01-alloca-2.yml                TIMEOUT                  10.88   11.02
+... 
+Statistics:             35 Files
+  correct:              14
+    correct true:        0
+    correct false:      14
+  incorrect:             0
+    incorrect true:      0
+    incorrect false:     0
+  unknown:              21
+  Score:                14 (max: 51)
+
+
+real	2m42.873s
+user	0m0.061s
+sys	0m0.049s
+Regression testing results is: 40 % of correct results from 35 test cases.
+</pre>
+                                </figure>
                                
                             </div>
                        </div>
