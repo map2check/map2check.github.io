@@ -24,10 +24,7 @@ layout: default
                             </li>
                             <li>
                                 <a href="#map_sample">Map2Check First Example</a>
-                            </li>
-                            <li>
-                                <a href="#map_options">Map2Check Options</a>
-                            </li>
+                            </li>                            
                         </ul>
                         
                         <!-- Each content -->
@@ -45,6 +42,36 @@ $./map2check [options] program.[i|c|bc]
                             To get a complete list of Map2Check’s command-line options run: 
                             <font face="courier new"><a href="#map_options">map2check --help</a></font>. The remainder of this page illustrate Map2Check’s main command-line options.
                             </p>
+<figure id="code">
+<pre class="prettyprint lang-sh code">
+> > > 	  v7.3.1-Flock : Wed Nov 27 20:38:14 UTC 2019 	 < < <
+
+  Usage: map2check [options] file.[i|c|bc]
+  
+  Options:
+    --help                 show help
+    --version              prints map2check version
+    --debug                debug mode
+    --input-file arg       specifies the files
+    --smt-solver arg (=z3) specifies the smt-solver, valid values are stp (STP),
+                            z3 (Z3 is default), btor (Boolector), and yices2 
+                            (Yices)
+    --timeout arg          timeout for map2check execution
+    --target-function      searches for __VERIFIER_error is reachable
+    --generate-testcase    creates c program with fail testcase (experimental)
+    --memtrack             check for memory errors
+    --print-counter        print counterexample
+    --memcleanup-property  analyze program for memcleanup errors
+    --check-overflow       analyze program for overflow failures
+    --check-asserts        analyze program and verify assert failures
+    --add-invariants       adding program invariants adopting Crab-LLVM
+    --generate-witness     generates witness file
+    --expected-result arg  specifies type of violation expected
+    --btree                uses btree structure to hold information 
+                            (experimental, use this if you are having memory 
+                            problems)
+</pre>
+</figure>
                             
                         <h2 id="map_sample">Map2Check First Example</h2>
                             <p style="text-align:justify">
@@ -184,40 +211,6 @@ VERIFICATION FAILED
 </pre>
 </figure>
 </br>
-                            
-                            <h2 id="map_options">Map2Check Options</h2>
-                            <p style="text-align:justify">
-                            Map2Check is invoked as follows: <font face="courier new"><a href="#map_options">map2check --help</a></font>.
-                            </p>
-                            
-<figure id="code">
-<pre class="prettyprint lang-sh code">
-&gt; &gt; &gt; 	  v7.2-Flock : Tue Nov 27 22:00:00 -04 2018 	 &lt; &lt; &lt;
-
-Usage: map2check [options] file.[i|c|bc]
-
-Options:
-  -h [ --help ]                show help
-  -v [ --version ]             prints map2check version
-  -d [ --debug ]                Debug mode
-  -i [ --input-file ] arg      specifies the files
-  -t [ --timeout ] arg         Timeout for map2check execution
-  -f [ --target-function ]     Searches for __VERIFIER_error is reachable
-  -g [ --generate-testcase ]   Creates c program with fail testcase 
-                               (experimental)
-  -m [ --memtrack ]            Check for memory errors
-  -p [ --print-counter ]       Print Counterexample
-  --memcleanup-property         Analyze program for memcleanup errors
-  -o [ --check-overflow ]      Analyze program for overflow failures
-  -c [ --check-asserts ]       Analyze program and verify assert failures
-  -a [ --add-invariants ]      Adding program invariants adopting Crab-LLVM
-  -w [ --generate-witness ]    Generates witness file
-  -e [ --expected-result ] arg Specifies type of violation expected
-  -b [ --btree ]                Uses btree structure to hold information 
-                               (experimental, use this if you are having memory
-                               problems)
-</pre>
-</figure>
 </br>
                     </div>
 		
